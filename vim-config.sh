@@ -4,7 +4,7 @@
 
 if [ -e ~/.vimrc ]
 then
-  echo "Le fichier ~/.vimrc est déjà présenté"
+  echo "Le fichier ~/.vimrc est déjà présente"
   exit 1
 fi
 
