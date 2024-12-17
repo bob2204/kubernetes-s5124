@@ -19,6 +19,13 @@ spec:
       - image: bob2606/hello-http:0.8.26
         name: hello-http
         ports:
-        - name: www
-          containerPort: 8080
+        - name: hello
+          containerPort: 80
+        env:
+        - name: MSG
+          value: Dev
+        - name: VERSION
+          value: "0.10"
+        - name: PORT
+          value: "80"
         resources: {}
