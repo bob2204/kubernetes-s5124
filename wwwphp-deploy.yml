@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: www
+  name: www
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: www
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: www
+    spec:
+      containers:
+      - image: nginx:1.26
+        name: nginx
+        ports:
+        - name: www
+          containerPort: 80
+        resources: {}
+      - image: php:8.2-fpm
+        name: php
+        resources: {}
