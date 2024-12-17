@@ -28,4 +28,16 @@ spec:
           value: "0.10"
         - name: PORT
           value: "80"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          periodSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /code/500
+            port: 80
+          periodSeconds: 15
+          failureThreshold: 2
         resources: {}
