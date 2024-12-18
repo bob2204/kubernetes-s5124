@@ -22,6 +22,35 @@ spec:
         - name: www
           containerPort: 80
         resources: {}
+        readinessProbe:
+          httpGet:
+            port: 80
+            path: /index.html
+          periodSeconds: 2
+          failureThreshold: 2
+        livenessProbe:
+          httpGet:
+            port: 80
+            path: /index.html
+          periodSeconds: 5
+          failureThreshold: 3
+        volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/conf.d
+        - name: partagenfs
+          mountPath: /usr/share/nginx/html
       - image: php:8.2-fpm
         name: php
+        volumeMounts:
+        - name: partagenfs
+          mountPath: /var/www/html
         resources: {}
+
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf
+      - name: partagenfs
+        nfs:
+          server: 172.18.0.1
+          path: /siteweb
