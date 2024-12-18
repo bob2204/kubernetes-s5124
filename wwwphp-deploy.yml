@@ -36,14 +36,20 @@ spec:
           failureThreshold: 3
         volumeMounts:
         - name: nginx-conf
-          mountPath: /etc/nginx/conf.d
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: default.conf
         - name: partagenfs
           mountPath: /usr/share/nginx/html
+          subPath: siteweb
       - image: php:8.2-fpm
         name: php
         volumeMounts:
         - name: partagenfs
           mountPath: /var/www/html
+          subPath: siteweb
+        - name: partagenfs
+          mountPath: /var/lib/mysql
+          subPath: datadb
         resources: {}
 
       volumes:
@@ -53,4 +59,4 @@ spec:
       - name: partagenfs
         nfs:
           server: 172.18.0.1
-          path: /siteweb
+          path: /
