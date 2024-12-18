@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    kubernetes.io/change-cause: 0.8.25
   labels:
     app: hello
   name: hello
@@ -9,14 +11,17 @@ spec:
   selector:
     matchLabels:
       app: hello
-  strategy: {}
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 5
   template:
     metadata:
       labels:
         app: hello
     spec:
       containers:
-      - image: bob2606/hello-http:0.8.26
+      - image: bob2606/hello-http:0.8.25
         name: hello-http
         ports:
         - name: hello
