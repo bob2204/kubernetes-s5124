@@ -42,9 +42,14 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /documents
+        - name: conf
+          mountPath: /etc/busy
 
       volumes:
       - name: data
         hostPath:
           path: /data
           type: Directory
+      - name: conf
+        configMap:
+          name: busy-conf

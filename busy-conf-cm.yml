@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  busy.conf: |
+    # Exemple de fichier de configuration
+    # Commentaires
+    PORT=56000
+    USER=busy
+    DATADIR=/document
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: busy-conf
