@@ -39,4 +39,12 @@ spec:
         envFrom:
         - configMapRef:
             name: busy
-      
+        volumeMounts:
+        - name: data
+          mountPath: /documents
+
+      volumes:
+      - name: data
+        hostPath:
+          path: /data
+          type: Directory
