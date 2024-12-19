@@ -28,5 +28,7 @@ spec:
           do
             :
           done
-        resources: {}
+        resources: 
+          limits:
+            cpu: 250m
 status: {}
