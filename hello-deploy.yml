@@ -41,8 +41,10 @@ spec:
           failureThreshold: 3
         livenessProbe:
           httpGet:
-            path: /code/500
+            path: /healthz
             port: 80
           periodSeconds: 15
           failureThreshold: 2
-        resources: {}
+        resources: 
+          limits:
+            cpu: 10m
