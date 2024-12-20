@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  name: labo-1
+  namespace: labo
+spec:
+  hard:
+    limits.cpu: 500m
+    pods: "15"
+status: {}
