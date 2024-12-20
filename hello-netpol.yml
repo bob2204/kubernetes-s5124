@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hello-www
+  namespace: default
+spec:
+  podSelector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+        - hello
+        - www
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              np: ok
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: labo
+          podSelector:
+            matchLabels:
+              np: ok
